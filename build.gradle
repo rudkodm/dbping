@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '4.0.1'
+}
+
+group 'by.rudko'
+version '1.0-SNAPSHOT'
+mainClassName = 'by.rudko.dbping.JdbcPing'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "info.picocli:picocli:3.6.1"
+    compile 'commons-lang:commons-lang:2.6'
+    testCompile "junit:junit:4.12"
+
+    // Drivers
+    compile "com.microsoft.sqlserver:mssql-jdbc:7.0.0.jre8"
+}
+
+shadowJar {
+    baseName = 'dbping'
+    classifier = null
+    version = null
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.10.2'
+}
